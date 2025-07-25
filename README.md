@@ -12,6 +12,10 @@ This capstone investigates whether NBA teams get good value for the money they s
 │ ├── advanced_player_stats_checked.csv
 │ ├── nba_salary_checked.csv
 │ └── merged_stats.csv ← cleaned & merged master dataset
+├── figures/
+│   ├── salary_hist.png
+│   ├── per_salary_scatter.png
+│   └── corr_heatmap.png
 ├── notebooks/
 │ ├── 01_Data_Cleaning.ipynb
 │ ├── 02_EDA.ipynb
