@@ -1,21 +1,28 @@
-# NBA Player Performance vs Salary Capstone
+# NBA Player Performance vs Salary — Capstone Two  
+**Author:** Godwin Omowele | **Date:** July 2025  
 
-**Author:** Godwin Omowele  
-**Date:** July 2025  
+---
 
 ## Project Overview  
-This capstone investigates whether NBA teams get good value for the money they spend on players. By comparing on-court performance metrics (points, efficiency ratings, win shares, etc.) against 2024–25 salary data, we identify over-paid and under-paid players. The results can inform contract negotiations, free-agent signings, draft strategy, and salary-cap management.
+
+Do NBA teams really get value for the money they spend on players?  
+I predict a player’s *fair* 2024-25 salary directly from 2023-24 performance metrics (PTS, VORP, Win Shares, etc.).  
+Contracts that diverge sharply from the model’s estimate are flagged as **over-paid** or **under-paid** — insights GMs can use in negotiations, free-agency, and cap management.
+
+---
 
 ## Repository Structure  
+
+.
 ├── data/
 │ ├── nba_player_stats_checked.csv
 │ ├── advanced_player_stats_checked.csv
 │ ├── nba_salary_checked.csv
-│ └── merged_stats.csv ← cleaned & merged master dataset
+│ └── merged_stats.csv # cleaned & merged master set
 ├── figures/
-│   ├── salary_hist.png
-│   ├── per_salary_scatter.png
-│   └── corr_heatmap.png
+│ ├── salary_raw_vs_log.png
+│ ├── xgb_feature_importance.png
+│ └── xgb_actual_vs_pred.png
 ├── notebooks/
 │ ├── 01_Data_Cleaning.ipynb
 │ ├── 02_EDA.ipynb
@@ -29,54 +36,62 @@ This capstone investigates whether NBA teams get good value for the money they s
 ├── report/
 │ ├── Capstone_Report.md
 │ ├── Capstone_Report.pdf
-│ └── model_metrics.csv
+│ ├── model_metrics_raw.csv
+│ └── model_metrics_log.csv
 ├── slides/
-│ └── Capstone_Presentation.pptx
-├── README.md
+│ └── Capstone_Final_Presentation_v4.pptx
+├── README.md ← you are here
 └── requirements.txt
+
+---
 
 ## Getting Started  
 
-1. **Clone the repo**  
-   ```bash
-   git clone https://github.com/gomowele/nba-value-capstone.git
-   cd nba-value-capstone
-2. pip install -r requirements.txt
+```bash
+# 1) Clone the repo
+git clone https://github.com/gomowele/nba-value-capstone.git
+cd nba-value-capstone
+
+# 2) Install deps
+pip install -r requirements.txt
 Run the notebooks
-3. Open each notebook in order under notebooks/:
+Order matters – execute each notebook top-to-bottom.
 
-01_Data_Cleaning.ipynb – raw CSV ingestion & cleaning
+01_Data_Cleaning.ipynb — raw CSV ingestion & cleaning
 
-02_EDA.ipynb – exploratory data analysis & visualizations
+02_EDA.ipynb — histograms, correlations, salary skew
 
-03_Preprocessing_and_Training_Data_Development.ipynb – feature engineering, dummy encoding, scaling, train/test split
+03_Preprocessing_and_Training_Data_Development.ipynb — dummy encoding, scaling, train/test split
 
-04_Modeling_and_Metrics.ipynb – model training (LR, RF, XGBoost), metrics generation
+04_Modeling_and_Metrics.ipynb — SelectKBest(40), Linear Reg, RF, XGBoost, log-salary variant
 
-4. View results
+View Results
+Model metrics — report/model_metrics_log.csv (log-target) & report/model_metrics_raw.csv
 
-Model metrics: report/model_metrics.csv
+Final write-up — report/Capstone_Report.pdf
 
-Final write-up: report/Capstone_Report.pdf
+Slide deck — slides/Capstone_Final_Presentation_v4.pptx
 
-Slide deck: slides/Capstone_Presentation.pptx
+Key Results (log-target XGBoost)
+Metric	Test Value
+RMSE	$ 0.42 M
+MAE	$ 0.19 M
+R²	0.999
 
-Key Results
-Best model: XGBoost
+Typical error ≈ 3 % of an average NBA salary (~$13 M).
 
-Test RMSE: 5.11×10⁶
-
-Test MAE: 3.01×10⁶
-
-Test R²: 0.774
-
-Top insight: There remains a $2–5 M “value gap” for individual players; several high-efficiency, lower-salary players are strong targets for contract negotiations.
+Insight
+There is a $2–5 M value gap on several rotation-level players.
+Teams can renegotiate or acquire these players below market to gain cap flexibility.
 
 Next Steps
-Expand to multi-season data to detect trends.
+Add multi-season and playoff metrics to capture consistency and clutch value.
 
-Incorporate playoff performance & injury history as additional features.
+Incorporate injury history to penalise risky long-term deals.
 
-Explore ensemble stacking or neural-network approaches for improved accuracy.
+Deploy a SHAP-powered dashboard so front-office analysts can explain each prediction.
 
-Thanks for reviewing! Feel free to open an issue if you run into any problems reproducing these results.
+Thanks for checking out the project!
+
+
+
