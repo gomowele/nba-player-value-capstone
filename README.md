@@ -72,11 +72,14 @@ Final write-up — report/Capstone_Report.pdf
 
 Slide deck — slides/Capstone_Final_Presentation_v4.pptx
 
-Key Results (log-target XGBoost)
-Metric	Test Value
-RMSE	$ 0.42 M
-MAE	$ 0.19 M
-R²	0.999
+### Key Results (log-target XGBoost)
+
+| Metric | Test Value |
+|--------|-----------:|
+| RMSE   | **\$ 0.50 M** |
+| MAE    | **\$ 0.13 M** |
+| R²     | **0.92** |
+
 
 Typical error ≈ 3 % of an average NBA salary (~$13 M).
 
